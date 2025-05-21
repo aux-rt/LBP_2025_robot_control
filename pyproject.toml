@@ -1,0 +1,22 @@
+[build-system]
+requires = ["pdm-backend >= 2.4.0"]
+build-backend = "pdm.backend"
+
+[project]
+name = "lbp_2025_robot_control"
+version = "0.1.0"
+authors = [{name="Julius Brandl"}]
+description = "LBP 2025 Robot Control"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "Apache-2.0"
+license-files = ["LICENSE*"]
+dependencies = [
+    "tqdm==4.67.1",
+    "numpy==2.2.5",
+    "dynamixel-sdk==3.7.31"
+]
