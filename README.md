@@ -23,6 +23,8 @@ Install the necessary dependencies with pip:
 pip install git+https://github.com/aux-rt/LBP_2025_robot_control
 ```
 
+### 4. Download Examples
+Download the two files in the `examples` folder on GitHub and put them in your working directory (next to your venv folder).
 
 ## Robot Arm Setup Tutorial
 ### 1. Identify Your COM Port
