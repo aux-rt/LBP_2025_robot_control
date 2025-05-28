@@ -19,12 +19,12 @@
 
 import numpy as np
 
-from dynamixel import (
+from .dynamixel import (
     CalibrationMode,
     TorqueMode,
     convert_degrees_to_steps,
 )
-from utils import MotorsBus
+from .utils import MotorsBus
 
 URL_TEMPLATE = (
     "https://raw.githubusercontent.com/huggingface/lerobot/main/media/{robot}/{arm}_{position}.webp"
