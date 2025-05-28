@@ -32,7 +32,7 @@ Download the two files in the `examples` folder on GitHub and put them in your w
 Check the name of your COM port by running:
 
 ```
-python env\Lib\site-packages\lbp_2025_robot_control\find_motors_bus_port.py
+find_motors_bus_port
 ```
 
 
@@ -47,11 +47,7 @@ Start with the motor at the **base** and work your way to the **gripper**. To ch
 3. With only the target motor plugged in, run the following script (update the port if needed):
 
 ```
-python venv\Lib\site-packages\lbp_2025_robot_control\configure_motor.py \
-  --port /dev/tty.usbmodem58760432961 \
-  --model xl330-m288 \
-  --baudrate 1000000 \
-  --ID 1
+configure_motor.py --port /dev/tty.usbmodem58760432961 --model xl330-m288 --baudrate 1000000 --ID 1
 ```
 
 - Use model `xl430-w250` for the **first two motors** (12V).

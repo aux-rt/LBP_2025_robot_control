@@ -4,7 +4,7 @@ build-backend = "pdm.backend"
 
 [project]
 name = "lbp_2025_robot_control"
-version = "0.1.9"
+version = "0.1.10"
 authors = [{name="Julius Brandl"}]
 description = "LBP 2025 Robot Control"
 readme = "README.md"

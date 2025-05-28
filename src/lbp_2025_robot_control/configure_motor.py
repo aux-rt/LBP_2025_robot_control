@@ -152,7 +152,7 @@ def main():
     )
     args = parser.parse_args()
 
-    configure_motor(args.port, args.model, args.ID, args.baudrate)
+    configure_motor(args.port, "dynamixel", args.model, args.ID, args.baudrate)
 
 
 if __name__ == "__main__":
