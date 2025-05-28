@@ -312,7 +312,7 @@ class ManipulatorRobot:
                 print(f"Missing calibration file '{arm_calib_path}'")
 
                 if self.robot_type in ["koch", "koch_bimanual", "aloha"]:
-                    from calibration import run_arm_calibration
+                    from .calibration import run_arm_calibration
 
                     calibration = run_arm_calibration(arm, self.robot_type, name, arm_type)
 
