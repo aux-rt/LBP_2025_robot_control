@@ -55,10 +55,11 @@ if __name__ == "__main__":
     print("Connected to follower arm")
 
     # set velocity for point-to-point motion
+    # be carful with the velocity, the robot can move very fast if you remove this or set it too high.
     follower_arm.write("Profile_Velocity", [VEL, VEL, VEL, VEL, VEL, VEL]) 
     follower_arm.write("Torque_Enable", TorqueMode.ENABLED.value)
 
-
+    # print the current motor positions
     while not stop_robot_flag:
         cur_pos = follower_arm.read("Present_Position")
         print(f"Current position: [{", ".join(map(str, list((cur_pos))))}]")

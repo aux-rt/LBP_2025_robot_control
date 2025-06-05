@@ -4,7 +4,7 @@ from lbp_2025_robot_control.dynamixel import DynamixelMotorsBus, TorqueMode
 import time
 
 
-GOAL_SPEED = 40 # Desired speed
+GOAL_SPEED = 40 # Desired speed, be carful with the speed, the robot can move very fast if you set it too high.
 motor_idx = None # current motor index, None means no motor selected
 motor_goal_vels = [0, 0, 0, 0, 0, 0] # goal velocities for each motor, initialized to 0
 stop_robot_flag = False # flag to stop motor
@@ -49,7 +49,10 @@ keyboard.on_release(lambda _: reset_motor_speeds()) # set all motor speeds to 0 
 
 
 if __name__ == "__main__":
+    # create the motor configuration 
     follower_config = DynamixelMotorsBusConfig(
+        # change to your port:
+        # run `python venv\Lib\site-packages\lbp_2025_robot_control\find_motors_bus_port.py` in the terminal to find the port
         port="COM3",
         motors={
             # name: (index, model)
@@ -74,6 +77,7 @@ if __name__ == "__main__":
     # enable torque for all motors
     follower_arm.write("Torque_Enable", TorqueMode.ENABLED.value)
 
+    # print the current and set velocities and positions of the motors
     while not stop_robot_flag:
         follower_arm.write("Goal_Velocity", motor_goal_vels)
         cur_vel = follower_arm.read("Present_Velocity")

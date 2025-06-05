@@ -1,4 +1,5 @@
 # MOTION CONTROL FOR THE LBP 2025 Robot @ University of Augsburg
+The code to control the dynamixel motors is based on the [Lerobot](https://github.com/huggingface/lerobot).
 ## Installation
 ### 1.  Install Python 3.12 if needed
     1. Go to: https://www.python.org/downloads/release/python-3129/ and download the version corresponding to your system.
@@ -12,7 +13,7 @@ python -m venv venv
 
 # Activate the virtual environment:
 # On Windows:
-venv\Scripts\activate
+.\venv\Scripts\activate
 
 # On macOS/Linux:
 source venv/bin/activate
@@ -35,8 +36,12 @@ Check the name of your COM port by running:
 find_motors_bus_port
 ```
 
+If the command cannot be found try the following command instead:
+```
+python env\Lib\site-packages\lbp_2025_robot_control\find_motors_bus_port.py
+```
 
-### 2. Assign Unique Motor IDs
+### 2. Assign Unique Motor IDs (One-Time Setup)
 
 Start with the motor at the **base** and work your way to the **gripper**. To change the ID of a motor:
 
@@ -45,11 +50,15 @@ Start with the motor at the **base** and work your way to the **gripper**. To ch
 2. ⚠️ **Caution:** Do **not** connect 5V motors (`xl330`) to a 12V power supply. This will **damage** the motors.
 
 3. With only the target motor plugged in, run the following script (update the port if needed):
+4. Use for COM_PORT the COM-Port identified in step 1.
 
 ```
-configure_motor.py --port /dev/tty.usbmodem58760432961 --model xl330-m288 --baudrate 1000000 --ID 1
+configure_motor.py --port COM_PORT --model xl330-m288 --baudrate 1000000 --ID ID
 ```
-
+If the command cannot be found try the following command instead:
+```
+python venv\Lib\site-packages\lbp_2025_robot_control\configure_motor.py --port COM_PORT --model xl330-m288 --baudrate 1000000 --ID ID
+```
 - Use model `xl430-w250` for the **first two motors** (12V).
 - Use model `xl330-m288` for the **remaining motors** (5V).
 - Assign **ID 1–6**, starting from the base and ending at the gripper.
@@ -61,7 +70,7 @@ Run the test script:
 ```
 python test_velocity_mode.py
 ```
-
+- set the COM-Port in Line 56
 - Select a motor by pressing keys **1–6**.
 - Rotate the selected motor using **'w'** and **'s'**.
 - Press **'ESC'** to exit. Be careful as the torque is disabled and the robot will collapse.
@@ -72,6 +81,7 @@ python test_velocity_mode.py
 ### 4. Calibrate the Motors (One-Time Setup)
 
 To allow motors to return to the same position after being unplugged, perform a **calibration**:
+Don't forget to set the COM-Port in line 35.
 
 1. Run:
 

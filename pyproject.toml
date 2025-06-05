@@ -4,7 +4,7 @@ build-backend = "pdm.backend"
 
 [project]
 name = "lbp_2025_robot_control"
-version = "0.1.10"
+version = "0.1.11"
 authors = [{name="Julius Brandl"}]
 description = "LBP 2025 Robot Control"
 readme = "README.md"
@@ -18,7 +18,8 @@ license-files = ["LICENSE*"]
 dependencies = [
     "tqdm==4.67.1",
     "numpy==2.2.5",
-    "dynamixel-sdk==3.7.31"
+    "dynamixel-sdk==3.7.31",
+    "keyboard==0.13.5"
 ]
 [project.scripts]
 find_motor_bus_port = "lbp_2025_robot_control.find_motors_bus_port:main"
