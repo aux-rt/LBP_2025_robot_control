@@ -1,5 +1,5 @@
 # MOTION CONTROL FOR THE LBP 2025 Robot @ University of Augsburg
-The code to control the dynamixel motors is based on the [Lerobot](https://github.com/huggingface/lerobot).
+The code to control the dynamixel motors is based on the [Lerobot](https://github.com/huggingface/lerobot) library.
 ## Installation
 ### 1.  Install Python 3.12 if needed
     1. Go to: https://www.python.org/downloads/release/python-3129/ and download the version corresponding to your system.
