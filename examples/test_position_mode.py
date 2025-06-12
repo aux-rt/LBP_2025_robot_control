@@ -58,11 +58,16 @@ if __name__ == "__main__":
     # be carful with the velocity, the robot can move very fast if you remove this or set it too high.
     follower_arm.write("Profile_Velocity", [VEL, VEL, VEL, VEL, VEL, VEL]) 
     follower_arm.write("Torque_Enable", TorqueMode.ENABLED.value)
-
+    error_counter = 0
     # print the current motor positions
-    while not stop_robot_flag:
-        cur_pos = follower_arm.read("Present_Position")
-        print(f"Current position: [{", ".join(map(str, list((cur_pos))))}]")
+    while not stop_robot_flag and error_counter < 5:
+        # catch connection error if only happens once in a while
+        try:
+            cur_pos = follower_arm.read("Present_Position")
+            print(f"Current position: [{", ".join(map(str, list((cur_pos))))}]")
+        except ConnectionError as e:
+            error_counter += 1
+            print(f"Connection error: {e}. Retrying... ({error_counter})")
         time.sleep(0.5)
 
     print("Stopping robot...")

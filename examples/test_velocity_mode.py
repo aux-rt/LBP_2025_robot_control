@@ -78,11 +78,17 @@ if __name__ == "__main__":
     follower_arm.write("Torque_Enable", TorqueMode.ENABLED.value)
 
     # print the current and set velocities and positions of the motors
-    while not stop_robot_flag:
-        follower_arm.write("Goal_Velocity", motor_goal_vels)
-        cur_vel = follower_arm.read("Present_Velocity")
-        cur_pos = follower_arm.read("Present_Position")
-        print(f"Current Velocity: {cur_vel}, Goal Velocity: {motor_goal_vels}, Current Position: {cur_pos}")
+    error_counter = 0
+    while not stop_robot_flag and error_counter < 5:
+        # catch connection error if only happens once in a while
+        try:
+            follower_arm.write("Goal_Velocity", motor_goal_vels)
+            cur_vel = follower_arm.read("Present_Velocity")
+            cur_pos = follower_arm.read("Present_Position")
+            print(f"Current Velocity: {cur_vel}, Goal Velocity: {motor_goal_vels}, Current Position: {cur_pos}")
+        except ConnectionError as e:
+            error_counter += 1
+            print(f"Connection error: {e}. Retrying... ({error_counter})")
         time.sleep(0.1)
 
     print("Stopping robot...")
